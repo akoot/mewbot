@@ -39,18 +39,13 @@ app.post('/mewbot2/', (req, res) => {
 
     // Send the message to the Discord channel
     if (channel && message.text) {
-        //channel.send(`${message.text}`);
         channel.send(message.text);
     } else {
         console.log('Could not find the Discord channel or the message didn\'t contain text');
     }
 
     // Send a '200 OK' response to acknowledge the message
-    res.status(200).send({
-        status: 'success',
-        message: 'Message received successfully',
-        receivedMessage: message.text
-    });
+    res.status(200)
 });
 
 // Start the server
