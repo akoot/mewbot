@@ -1,7 +1,6 @@
 # Setup
 ## Discord
 - [Start Here](https://discord.com/developers/docs/quick-start/getting-started#step-1-creating-an-app)
-- I have to write an essay so I won't say anything more! Good day!
 - Get your bot's token
 - Invite your bot to the server
 ## Environment Variables
