@@ -7,7 +7,7 @@
 - These environment variables must be set, or hard code them in `app.js` if you want to keep things local
 - `DISCORD_TOKEN` - Your bot's token
 - `GUILD_ID` - Your Discord server's ID
-`- CHANNEL_ID` - The channel the messages will go to
+- `CHANNEL_ID` - The channel the messages will go to
 ## NodeJS
 - Run `npm install`
 - Run `node app.js`
