@@ -26,7 +26,7 @@ discordClient.login(DISCORD_BOT_TOKEN);
 app.use(bodyParser.json());
 
 // GroupMe webhook endpoint
-app.post('/mewbot2/', (req, res) => {
+app.post('/mewbot/', (req, res) => {
     const message = req.body;
 
     // Discord guild and channel IDs
