@@ -13,6 +13,8 @@ const GUILD_ID = process.env.GUILD_ID
 const CHANNEL_ID = process.env.CHANNEL_ID
 const devMode = process.env.NODE_ENV === "development"
 
+// Path variable
+const path = '/'
 
 // Set up the Discord bot client
 const discordClient = new Client({
@@ -32,20 +34,26 @@ discordClient.login(DISCORD_BOT_TOKEN)
 app.use(bodyParser.json())
 
 // GroupMe webhook endpoint
-app.post('/mewbot', (req, res) => {
+app.post(path, (req, res) => {
     const message = req.body
 
     // Fetch the Discord guild
     const guild = discordClient.guilds.cache.get(GUILD_ID)
     if (!guild) {
-        res.sendStatus(500)
+        res.status(500).send({
+            status: 'error',
+            message: 'Invalid GUILD_ID'
+        })
         return
     }
 
     // Fetch the Discord channel
     const channel = guild.channels.cache.get(CHANNEL_ID)
     if (!channel) {
-        res.sendStatus(500)
+        res.status(500).send({
+            status: 'error',
+            message: 'Invalid CHANNEL_ID'
+        })
         return
     }
 
@@ -61,6 +69,12 @@ app.post('/mewbot', (req, res) => {
     // Add text to the message if it has text
     if(text) finalMessage += text
     channel.send(finalMessage)
+
+    // If there are no attachments, then send '200 OK' and return
+    if (!attachments) {
+        res.sendStatus(200)
+        return
+    }
 
     // Add attachments if it has them
     for(let attachment of attachments) {
